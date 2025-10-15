@@ -4,4 +4,4 @@ This repository contains a deep learning project for classifying Taiwanese foods
 The dataset includes 101 traditional Taiwanese food categories such as beef noodles, bubble tea, bawan, and more.
 
 
-update soon 
+ update readme doc soon 
