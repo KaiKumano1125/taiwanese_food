@@ -5,9 +5,9 @@ The dataset includes 101 traditional Taiwanese food categories such as beef nood
 
 ---
 
-## ⚙️ Setup
+## Setup
 
-### 1️⃣ Create virtual environment
+### Create virtual environment
 ```bash
 python -m venv .venv
 .venv\Scripts\activate      # Windows
@@ -54,8 +54,12 @@ output:
   save_name: "tw_food101_best.pth"
 ```
 
+## Author
+Kai Kumano
 
+Graduate School of Engineering, Chiba University
 
+London Visiting Researcher (UCL)
 
 
 
