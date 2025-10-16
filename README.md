@@ -18,7 +18,7 @@ source .venv/bin/activate   # Linux / macOS
 python train.py
 ```
 
-## Defult Model
+## Defualt Model
 Architecture: ResNet-18 (pretrained on ImageNet)
 
 Framework: PyTorch
