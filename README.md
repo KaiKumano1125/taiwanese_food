@@ -3,39 +3,6 @@
 This repository contains a deep learning project for classifying Taiwanese foods using a CNN (ResNet-18) trained on the **TW Food-101** dataset.  
 The dataset includes 101 traditional Taiwanese food categories such as beef noodles, bubble tea, bawan, and more.
 
-## Project Structure
-taiwanese_food/
-
-├── src/
-
-│ ├── train.py # Training script
-
-│ ├── inference.py # Inference script for prediction
-
-│ ├── dataset_loader.py # Dataset loading utilities
-
-│ ├── config.yaml # Configuration file for paths & parameters
-
-│ └── output/
-
-│ └── tw_food101_best.pth # Saved trained model
-
-└── dataset/
-
-└── tw_food_101/
-
-├── train/ # 101 folders, one per food class
-
-├── test/ # Unlabeled test images (0.jpg, 1.jpg, ...)
-
-├── tw_food_101_train.csv
-
-├── tw_food_101_test_list.csv
-
-└── tw_food_101_classes.csv
-
-
-
 ---
 
 ## ⚙️ Setup
