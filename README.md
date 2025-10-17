@@ -1,7 +1,10 @@
-## Taiwanese Food-101 Classification (PyTorch)
+# Taiwanese Food-101 Classification
 
-This repository contains a deep learning project for classifying Taiwanese foods using a CNN (ResNet-18) trained on the **TW Food-101** dataset.  
-The dataset includes 101 traditional Taiwanese food categories such as beef noodles, bubble tea, bawan, and more.
+This repository presents a deep learning project for recognizing **traditional Taiwanese dishes** using **Convolutional Neural Networks (CNNs)** built with **PyTorch**.  
+A **ResNet-18** model (pretrained on ImageNet) is fine-tuned on the **TW Food-101 dataset**, which contains **over 20,000 images** across **101 iconic Taiwanese food categories** such as *beef noodles*, *bubble tea*, *bawan*, and more.
+
+The goal of this project is to develop an efficient and accurate food image classifier that can serve as a foundation for applications in **smart restaurant menus**, **AI-assisted food recognition**, or **cultural food datasets**.
+
 
 ---
 
