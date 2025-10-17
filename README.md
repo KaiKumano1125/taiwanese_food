@@ -20,7 +20,7 @@ Before running the project, install all dependencies listed in `requirements.txt
 pip install -r requirements.txt
 ## Training model
 ```
-
+### Run the code
 ```bash
 python train.py
 ```
