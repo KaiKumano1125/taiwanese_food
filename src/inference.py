@@ -6,18 +6,14 @@ from PIL import Image
 import torch.nn as nn
 from dataset_loader import get_train_dataset
 
-# -----------------------
-# 1. Load config
-# -----------------------
+
 with open("../config/config.yaml", "r") as f:
     cfg = yaml.safe_load(f)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"[INFO] Using device: {device}")
 
-# -----------------------
-# 2. Define transform (same as training)
-# -----------------------
+
 test_tf = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
@@ -44,7 +40,8 @@ model.load_state_dict(torch.load(
 model = model.to(device)
 model.eval()
 
-print(f"[INFO] Model loaded with {len(class_names)} classes.")
+# print(f"[INFO] Model loaded with {len(class_names)} classes.")
+print(f"[INFO] Model name: {cfg['output']['save_name']}")
 
 # -----------------------
 # 4. Inference function
@@ -62,12 +59,12 @@ def predict_image(img_path):
         _, pred = torch.max(outputs, 1)
         predicted_class = class_names[pred.item()]
 
-    print(f"Prediction: {predicted_class}")
+    print(f"The food is: {predicted_class}")
     return predicted_class
 
 # -----------------------
 # 5. Example usage
 # -----------------------
 
-img_path = "../dataset/tw_food_101/test/1.jpg"
+img_path = "../dataset/kai3.jpg"
 predict_image(img_path)
