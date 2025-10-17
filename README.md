@@ -18,18 +18,17 @@ source .venv/bin/activate   # Linux / macOS
 python train.py
 ```
 
-## Defualt Model
-Architecture: ResNet-18 (pretrained on ImageNet)
+## Default Model
 
-Framework: PyTorch
+| Component | Description |
+|------------|-------------|
+| **Architecture** | ResNet-18 (pretrained on ImageNet) |
+| **Framework** | PyTorch |
+| **Loss Function** | Cross-Entropy |
+| **Optimizer** | Adam |
+| **Input Size** | 224 × 224 pixels |
+| **Number of Classes** | 101 Taiwanese food categories |
 
-Loss: Cross-Entropy
-
-Optimizer: Adam
-
-Image size: 224 × 224
-
-Classes: 101 Taiwanese foods
 
 ## Configuration(config.yaml)
 ```
@@ -55,11 +54,8 @@ output:
 ```
 
 ## Author
-Kai Kumano
+Kai Kumano -Graduate School of Engineering, Chiba University
 
-Graduate School of Engineering, Chiba University
-
-London Visiting Researcher (UCL)
 
 
 
