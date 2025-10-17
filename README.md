@@ -16,9 +16,11 @@ source .venv/bin/activate   # Linux / macOS
 
 Before running the project, install all dependencies listed in `requirements.txt`.
 
-```
+```bash
 pip install -r requirements.txt
 ## Training model
+```
+
 ```bash
 python train.py
 ```
