@@ -66,5 +66,5 @@ def predict_image(img_path):
 # 5. Example usage
 # -----------------------
 
-img_path = "../dataset/kai3.jpg"
+img_path = "../dataset/kai2.jpg"
 predict_image(img_path)

@@ -29,10 +29,17 @@ if __name__ == "__main__":
     train_dataset = get_train_dataset(cfg["dataset"]["train_dir"], train_tf)
     
     #split the dataset into training and validation sets
-    val_ratio = 0.1
+    train_ratio, val_ratio, test_ratio = 0.8, 0.1, 0.1
     val_size = int(len(train_dataset) * val_ratio)
-    train_size = len(train_dataset) - val_size
-    train_subset, val_subset = random_split(train_dataset, [train_size, val_size])
+    train_size = int(train_ratio * len(train_dataset))
+    test_size = len(train_dataset) - train_size - val_size
+    train_subset, val_subset, test_subset = random_split(train_dataset, [train_size, val_size, test_size])
+
+    print(f"[INFO] Dataset split into Train: {train_size}, Val: {val_size}, Test: {test_size}")
+    # val_ratio = 0.1
+    # val_size = int(len(train_dataset) * val_ratio)
+    # train_size = len(train_dataset) - val_size
+    # train_subset, val_subset = random_split(train_dataset, [train_size, val_size])
     
     train_loader = DataLoader(
         train_subset,
@@ -46,8 +53,14 @@ if __name__ == "__main__":
         shuffle=False,
         num_workers=cfg["training"]["num_workers"]
     )
-    print(f"[INFO] Training samples: {train_size}, Validation samples: {val_size}")
-    
+    test_loader = DataLoader(
+        test_subset,
+        batch_size=cfg["training"]["batch_size"],
+        shuffle=False,
+        num_workers=cfg["training"]["num_workers"]
+    )
+    print(f"[INFO] Training samples: {train_size}, Validation samples: {val_size}, Test samples: {test_size}")
+
     from torchvision.models import resnet18, ResNet18_Weights
     weights = ResNet18_Weights.DEFAULT if cfg["model"]["pretrained"] else None
     model = resnet18(weights=weights)
@@ -90,7 +103,22 @@ if __name__ == "__main__":
         print(f"Epoch [{epoch+1}/{num_epochs}] | "
               f"Train Loss: {epoch_train_loss:.4f}, Acc: {epoch_train_acc:.4f} | "
               f"Val Loss: {epoch_val_loss:.4f}, Acc: {epoch_val_acc:.4f}")
-           
+        
+        model.eval()
+        test_loss, test_corrects = 0.0, 0
+        with torch.no_grad():
+            for imgs, labels in test_loader:
+                imgs, labels = imgs.to(device), labels.to(device)
+                outputs = model(imgs)
+                loss = criterion(outputs, labels)
+                _, preds = torch.max(outputs, 1)
+                test_loss += loss.item() * imgs.size(0)
+                test_corrects += torch.sum(preds == labels.data)
+
+        test_loss = test_loss / len(test_subset)
+        test_acc = test_corrects.double() / len(test_subset)
+        print(f"Final Test Accuracy: {test_acc:.4f} | Test Loss: {test_loss:.4f}")
+
     os.makedirs(cfg["output"]["save_dir"], exist_ok=True)
     save_path = os.path.join(cfg["output"]["save_dir"], cfg["output"]["save_name"])
     torch.save(model.state_dict(), save_path)
